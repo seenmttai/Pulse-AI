@@ -1,0 +1,484 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PULSE AI - Senior Health Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script type="importmap">
+    {
+        "imports": {
+            "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.12.2/index.js"
+        }
+    }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <svg viewBox="0 0 200 200" class="heart-logo-small">
+                <path d="M100,180c-40-30-80-60-80-110c0-30,20-50,50-50c20,0,30,10,30,10s10-10,30-10c30,0,50,20,50,50C180,120,140,150,100,180z" />
+                <path class="pulse-line-small" d="M60,90 L80,90 L90,70 L100,110 L110,90 L140,90" fill="none" stroke="white" stroke-width="4" />
+            </svg>
+            <span>PULSE AI</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#ai-demos">AI Demos</a></li>
+                <li><a href="#problem">Problem</a></li>
+                <li><a href="#solution">Solution</a></li>
+                <li><a href="#diseases">Diseases</a></li>
+                <li><a href="#technology">Technology</a></li>
+                <li><a href="#impact">Impact</a></li>
+            </ul>
+            <div class="mobile-menu-toggle">☰</div>
+        </nav>
+    </header>
+
+    <main>
+
+        <section id="ai-demos" class="ai-demos">
+            <div class="container">
+                <h2 class="section-title">AI Disease Detection</h2>
+
+                <div class="demo-tabs">
+                    <div class="demo-tab active" data-target="alzheimer-demo">
+                        <i class="fas fa-brain"></i> Alzheimer's Detection
+                    </div>
+                    <div class="demo-tab" data-target="retinopathy-demo">
+                        <i class="fas fa-eye"></i> Diabetic Retinopathy
+                    </div>
+                    <div class="demo-tab" data-target="pneumonia-demo">
+                        <i class="fas fa-lungs"></i> Pneumonia Detection
+                    </div>
+                    <div class="demo-tab" data-target="heart-demo">
+                        <i class="fas fa-heartbeat"></i> Heart Disease
+                    </div>
+                </div>
+
+                <div class="demo-content active" id="alzheimer-demo">
+                    <div class="demo-wrapper">
+                        <div class="demo-upload glass-card">
+                            <h3><i class="fas fa-brain medical-icon"></i> Alzheimer's Detection</h3>
+                            <p>Upload an MRI scan for Alzheimer's stage detection using EfficientNet.</p>
+
+                            <label for="alzheimer-input" class="file-upload">
+                                <div class="file-upload-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                                <p>Drag and drop an MRI scan or click to browse</p>
+                                <p><small>Supported formats: JPG, PNG, DICOM</small></p>
+                                <input type="file" id="alzheimer-input" accept="image/*">
+                            </label>
+
+                            <button id="alzheimer-analyze" class="analyze-button">
+                                <i class="fas fa-brain"></i> Analyze Brain MRI
+                            </button>
+                        </div>
+
+                        <div class="demo-results">
+                            <h3>Analysis Results</h3>
+                            <div id="alzheimer-loader" class="loader">
+                                <div class="loader-spinner"></div>
+                                <p>Analyzing brain structures...</p>
+                            </div>
+                            <div id="alzheimer-result">
+                                <div class="placeholder-message">
+                                    <p>Upload an MRI scan and click "Analyze Brain MRI" to see results here.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="demo-content" id="retinopathy-demo">
+                    <div class="demo-wrapper">
+                        <div class="demo-upload glass-card">
+                            <h3><i class="fas fa-eye medical-icon"></i> Diabetic Retinopathy Screening</h3>
+                            <p>Upload a retinal fundus image for diabetic retinopathy detection using Swin Transformer.</p>
+
+                            <label for="retina-input" class="file-upload">
+                                <div class="file-upload-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                                <p>Drag and drop a retinal image or click to browse</p>
+                                <p><small>Supported formats: JPG, PNG</small></p>
+                                <input type="file" id="retina-input" accept="image/*">
+                            </label>
+
+                            <button id="retina-analyze" class="analyze-button">
+                                <i class="fas fa-eye"></i> Analyze Retinal Image
+                            </button>
+                        </div>
+
+                        <div class="demo-results">
+                            <h3>Analysis Results</h3>
+                            <div id="retina-loader" class="loader">
+                                <div class="loader-spinner"></div>
+                                <p>Analyzing retinal structures...</p>
+                            </div>
+                            <div id="retina-result">
+                                <div class="placeholder-message">
+                                    <p>Upload a retinal image and click "Analyze Retinal Image" to see results here.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="demo-content" id="pneumonia-demo">
+                    <div class="demo-wrapper">
+                        <div class="demo-upload glass-card">
+                            <h3><i class="fas fa-lungs medical-icon"></i> Pneumonia Detection</h3>
+                            <p>Upload a chest X-ray image to screen for pneumonia using Swin Transformer.</p>
+
+                            <label for="pneumonia-input" class="file-upload">
+                                <div class="file-upload-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                                <p>Drag and drop a chest X-ray or click to browse</p>
+                                <p><small>Supported formats: JPG, PNG, DICOM</small></p>
+                                <input type="file" id="pneumonia-input" accept="image/*">
+                            </label>
+
+                            <button id="pneumonia-analyze" class="analyze-button">
+                                <i class="fas fa-lungs"></i> Analyze Chest X-ray
+                            </button>
+                        </div>
+
+                        <div class="demo-results">
+                            <h3>Analysis Results</h3>
+                            <div id="pneumonia-loader" class="loader">
+                                <div class="loader-spinner"></div>
+                                <p>Analyzing lung fields...</p>
+                            </div>
+                            <div id="pneumonia-result">
+                                <div class="placeholder-message">
+                                    <p>Upload a chest X-ray and click "Analyze Chest X-ray" to see results here.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="demo-content" id="heart-demo">
+                    <div class="demo-wrapper">
+                        <div class="demo-upload glass-card">
+                            <h3><i class="fas fa-heartbeat medical-icon"></i> Heart Disease Prediction</h3>
+                            <p>Predict heart disease risk using machine learning models</p>
+
+                            <button id="heart-analyze" class="analyze-button">
+                                <i class="fas fa-external-link-alt"></i> Go to Heart Disease Predictor
+                            </button>
+                        </div>
+
+                        <div class="demo-results">
+                            <h3>Heart Disease Prediction</h3>
+                            <p>Machine learning model for cardiovascular risk assessment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="problem" class="problem">
+            <div class="container">
+                <h2 class="section-title">The Problem</h2>
+                <div class="problem-grid">
+                    <div class="problem-item">
+                        <div class="icon">🔍</div>
+                        <h3>Late Detection</h3>
+                        <p>Late detection of diseases in senior citizens leads to poorer health outcomes and diminished quality of life.</p>
+                    </div>
+                    <div class="problem-item">
+                        <div class="icon">🧩</div>
+                        <h3>Fragmented Systems</h3>
+                        <p>Fragmented healthcare systems require seniors to navigate multiple platforms for different health concerns.</p>
+                    </div>
+                    <div class="problem-item">
+                        <div class="icon">👵</div>
+                        <h3>Complex Interfaces</h3>
+                        <p>Complex interfaces create barriers for senior citizens using digital health tools, reducing adoption rates.</p>
+                    </div>
+                    <div class="problem-item">
+                        <div class="icon">⏱️</div>
+                        <h3>Delayed Intervention</h3>
+                        <p>Delayed intervention due to manual screening processes and specialist shortages impacts treatment effectiveness.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="solution" class="solution">
+            <div class="container">
+                <h2 class="section-title">Our Solution</h2>
+                <div class="solution-intro">
+                    <p>PULSE AI is a unified, senior-friendly platform that uses advanced AI algorithms to detect multiple diseases from various medical images and inputs, enabling early intervention and better health outcomes.</p>
+                </div>
+                <div class="solution-highlights">
+                    <div class="highlight">
+                        <div class="highlight-icon">🎯</div>
+                        <h3>All-in-One Platform</h3>
+                        <p>Designed specifically for senior citizens with accessibility at its core</p>
+                    </div>
+                    <div class="highlight">
+                        <div class="highlight-icon">⚡</div>
+                        <h3>Early Detection</h3>
+                        <p>Early detection of multiple conditions for timely intervention and better health outcomes</p>
+                    </div>
+                    <div class="highlight">
+                        <div class="highlight-icon">🧠</div>
+                        <h3>AI-Powered Precision</h3>
+                        <p>State-of-the-art deep learning models for accurate disease detection and classification</p>
+                    </div>
+                </div>
+                <div class="solution-diagram">
+                    <div class="diagram-container">
+                        <div class="diagram-center">
+                            <svg viewBox="0 0 200 200" class="pulse-diagram">
+                                <path d="M100,180c-40-30-80-60-80-110c0-30,20-50,50-50c20,0,30,10,30,10s10-10,30-10c30,0,50,20,50,50C180,120,140,150,100,180z" />
+                            </svg>
+                            <span>PULSE AI</span>
+                        </div>
+                        <div class="diagram-item" style="--angle: 0deg">
+                            <div class="diagram-icon">👴</div>
+                            <div class="diagram-text">Seniors</div>
+                        </div>
+                        <div class="diagram-item" style="--angle: 72deg">
+                            <div class="diagram-icon">👨‍⚕️</div>
+                            <div class="diagram-text">Doctors</div>
+                        </div>
+                        <div class="diagram-item" style="--angle: 144deg">
+                            <div class="diagram-icon">🏥</div>
+                            <div class="diagram-text">Hospitals</div>
+                        </div>
+                        <div class="diagram-item" style="--angle: 216deg">
+                            <div class="diagram-icon">💊</div>
+                            <div class="diagram-text">Medication</div>
+                        </div>
+                        <div class="diagram-item" style="--angle: 288deg">
+                            <div class="diagram-icon">👪</div>
+                            <div class="diagram-text">Family</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="diseases" class="diseases">
+            <div class="container">
+                <h2 class="section-title">Diseases We Detect</h2>
+                <div class="diseases-grid">
+                    <div class="disease-card">
+                        <div class="disease-icon">🧠</div>
+                        <h3>Alzheimer's</h3>
+                        <p>MRI scan analysis using EfficientNet</p>
+                        <div class="disease-accuracy">
+                            <div class="accuracy-bar">
+                                <div class="accuracy-fill" style="width: 97.71%"></div>
+                            </div>
+                            <div class="accuracy-label">97.71% Accuracy</div>
+                        </div>
+                    </div>
+                    <div class="disease-card">
+                        <div class="disease-icon">👁️</div>
+                        <h3>Diabetic Retinopathy</h3>
+                        <p>Retinal image analysis using Swin Transformer</p>
+                        <div class="disease-accuracy">
+                            <div class="accuracy-bar">
+                                <div class="accuracy-fill" style="width: 97.40%"></div>
+                            </div>
+                            <div class="accuracy-label">97.40% Accuracy</div>
+                        </div>
+                    </div>
+                    <div class="disease-card">
+                        <div class="disease-icon">🫁</div>
+                        <h3>Pneumonia</h3>
+                        <p>Chest X-ray analysis using Swin Transformer</p>
+                        <div class="disease-accuracy">
+                            <div class="accuracy-bar">
+                                <div class="accuracy-fill" style="width: 95.67%"></div>
+                            </div>
+                            <div class="accuracy-label">95.67% Accuracy</div>
+                        </div>
+                    </div>
+                    <div class="disease-card">
+                        <div class="disease-icon">❤️</div>
+                        <h3>Heart Disease</h3>
+                        <p>Risk prediction using machine learning</p>
+                        <div class="disease-accuracy">
+                            <div class="accuracy-bar">
+                                <div class="accuracy-fill" style="width: 90%"></div>
+                            </div>
+                            <div class="accuracy-label">90% Accuracy</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="technology" class="technology">
+            <div class="container">
+                <h2 class="section-title">Our Technology</h2>
+                <div class="tech-highlights">
+                    <div class="tech-card">
+                        <h3>Swin Transformer</h3>
+                        <p>State-of-the-art vision transformer architecture capturing both local and global image context</p>
+                        <div class="tech-animation">
+                            <div class="transformer-grid">
+                                <div class="grid-cell"></div>
+                                <div class="grid-cell"></div>
+                                <div class="grid-cell"></div>
+                                <div class="grid-cell"></div>
+                            </div>
+                            <div class="transformer-attention"></div>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <h3>Mixed Precision Training</h3>
+                        <p>Accelerated training and reduced memory footprint for faster, more efficient models</p>
+                        <div class="tech-animation">
+                            <div class="precision-bars">
+                                <div class="precision-bar fp32"></div>
+                                <div class="precision-bar fp16"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <h3>Custom GatedDense Layers</h3>
+                        <p>Learnable sigmoid gate mechanism for dynamic feature flow control</p>
+                        <div class="tech-animation">
+                            <div class="gate-animation">
+                                <div class="gate-container">
+                                    <div class="gate-door left"></div>
+                                    <div class="gate-door right"></div>
+                                </div>
+                                <div class="gate-flow"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <h3>Explainable AI (Grad-CAM)</h3>
+                        <p>Coming Soon: Visual explanations showing decision regions</p>
+                        <div class="tech-animation">
+                            <div class="gradcam-animation">
+                                <div class="gradcam-image"></div>
+                                <div class="gradcam-overlay"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="impact" class="impact">
+            <div class="container">
+                <h2 class="section-title">Impact & Benefits</h2>
+                <div class="impact-grid">
+                    <div class="impact-card">
+                        <h3>For Seniors</h3>
+                        <ul>
+                            <li>Earlier detection of health issues</li>
+                            <li>Reduced need for multiple doctor visits</li>
+                            <li>Easier access to medical screening</li>
+                            <li>Peace of mind through regular monitoring</li>
+                        </ul>
+                    </div>
+                    <div class="impact-card">
+                        <h3>For Healthcare Providers</h3>
+                        <ul>
+                            <li>Prioritized attention for high-risk cases</li>
+                            <li>Reduced screening burden</li>
+                            <li>Better patient outcomes through early intervention</li>
+                            <li>Comprehensive health monitoring solution</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <svg viewBox="0 0 200 200" class="heart-logo-small">
+                            <path d="M100,180c-40-30-80-60-80-110c0-30,20-50,50-50c20,0,30,10,30,10s10-10,30-10c30,0,50,20,50,50C180,120,140,150,100,180z" />
+                            <path class="pulse-line-small" d="M60,90 L80,90 L90,70 L100,110 L110,90 L140,90" fill="none" stroke="white" stroke-width="4" />
+                        </svg>
+                        <span>PULSE AI</span>
+                    </div>
+                    <p>Empowering senior health through unified, AI-powered disease detection</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#problem">Problem</a></li>
+                        <li><a href="#solution">Solution</a></li>
+                        <li><a href="#diseases">Diseases</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#technology">Technology</a></li>
+                        <li><a href="#impact">Impact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>About</h4>
+                    <p>Utilizing advanced AI to revolutionize senior healthcare through early detection and personalized insights.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 PULSE AI. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="back-to-top">↑</div>
+
+    <script type="module" src="script.js"></script>
+    <script>
+
+        document.querySelectorAll('.demo-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+
+                document.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.demo-content').forEach(c => c.classList.remove('active'));
+
+                tab.classList.add('active');
+
+                const target = tab.getAttribute('data-target');
+                document.getElementById(target).classList.add('active');
+            });
+        });
+
+        document.querySelectorAll('input[type="file"]').forEach(input => {
+            input.addEventListener('change', (e) => {
+                const fileUpload = e.target.parentElement;
+                const file = e.target.files[0];
+
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        fileUpload.style.backgroundImage = `url(${e.target.result})`;
+                        fileUpload.style.backgroundSize = 'contain';  
+                        fileUpload.style.backgroundRepeat = 'no-repeat'; 
+                        fileUpload.style.backgroundPosition = 'center';
+                        fileUpload.style.color = 'transparent';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
